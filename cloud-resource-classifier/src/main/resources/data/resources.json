@@ -1,0 +1,77 @@
+[
+  {
+    "id": "1",
+    "name": "vm-prod-01",
+    "cpu": 4,
+    "mem": 8,
+    "tags": {
+      "env": "prod",
+      "team": "backend"
+    }
+  },
+  {
+    "id": "2",
+    "name": "vm-test-api",
+    "cpu": 2,
+    "mem": 4,
+    "tags": {
+      "env": "test"
+    }
+  },
+  {
+    "id": "3",
+    "name": "db-prod-main",
+    "cpu": 8,
+    "mem": 16,
+    "tags": {
+      "env": "prod",
+      "service": "database"
+    }
+  },
+  {
+    "id": "4",
+    "name": "cache-staging",
+    "cpu": 1,
+    "mem": 2,
+    "tags": {
+      "env": "staging"
+    }
+  },
+  {
+    "id": "5",
+    "name": "vm-prod-worker",
+    "cpu": 6,
+    "mem": 12,
+    "tags": {
+      "env": "prod",
+      "type": "worker"
+    }
+  },
+  {
+    "id": "6",
+    "name": "db-test-replica",
+    "cpu": 2,
+    "mem": 8,
+    "tags": {
+      "env": "test"
+    }
+  },
+  {
+    "id": "7",
+    "name": "cache-prod-redis",
+    "cpu": 4,
+    "mem": 8,
+    "tags": {
+      "env": "prod"
+    }
+  },
+  {
+    "id": "8",
+    "name": "vm-staging-app",
+    "cpu": 3,
+    "mem": 6,
+    "tags": {
+      "env": "staging"
+    }
+  }
+]
