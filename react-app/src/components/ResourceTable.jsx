@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getAllResources, classifyResources, getStats } from '../api/resourceApi';
 import AnalyticsDashboard from './AnalyticsDashboard';
+import DynamicClassifier from './DynamicClassifier';
 import './ResourceTable.css';
 
 /**
@@ -241,6 +242,11 @@ function ResourceTable() {
       {/* === ANALYTICS DASHBOARD === */}
       {classified && resources.length > 0 && (
         <AnalyticsDashboard resources={resources} />
+      )}
+
+      {/* === DYNAMIC CLASSIFIER === */}
+      {classified && resources.length > 0 && (
+        <DynamicClassifier resources={resources} />
       )}
     </div>
   );
