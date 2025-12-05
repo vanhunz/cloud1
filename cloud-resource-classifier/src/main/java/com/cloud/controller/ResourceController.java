@@ -101,6 +101,73 @@ public class ResourceController {
     }
 
     /**
+     * POST /resources/add
+     * Thêm tài nguyên mới
+     */
+    @PostMapping("/add")
+    public ResponseEntity<?> addResource(@RequestBody CloudResource resource) {
+        try {
+            CloudResource addedResource = resourceService.addResource(resource);
+            
+            Map<String, Object> response = new HashMap<>();
+            response.put("success", true);
+            response.put("message", "Resource added successfully");
+            response.put("resource", addedResource);
+            
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(createErrorResponse("Failed to add resource: " + e.getMessage()));
+        }
+    }
+
+    /**
+     * DELETE /resources/{id}
+     * Xóa tài nguyên
+     */
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteResource(@PathVariable String id) {
+        try {
+            boolean deleted = resourceService.deleteResource(id);
+            
+            if (!deleted) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(createErrorResponse("Resource not found with ID: " + id));
+            }
+            
+            Map<String, Object> response = new HashMap<>();
+            response.put("success", true);
+            response.put("message", "Resource deleted successfully");
+            
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(createErrorResponse("Failed to delete resource: " + e.getMessage()));
+        }
+    }
+
+    /**
+     * GET /resources/alerts
+     * Kiểm tra cảnh báo quá tải
+     */
+    @GetMapping("/alerts")
+    public ResponseEntity<?> getAlerts() {
+        try {
+            List<Map<String, Object>> alerts = resourceService.checkOverloadAlerts();
+            
+            Map<String, Object> response = new HashMap<>();
+            response.put("success", true);
+            response.put("alertCount", alerts.size());
+            response.put("alerts", alerts);
+            
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(createErrorResponse("Failed to get alerts: " + e.getMessage()));
+        }
+    }
+
+    /**
      * GET /health
      * Health check endpoint
      */
